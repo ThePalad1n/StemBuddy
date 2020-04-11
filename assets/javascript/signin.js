@@ -9,55 +9,52 @@ var firebaseConfig = {
     appId: "1:396823292169:web:442dfc8893fe1ce332cbd8",
     measurementId: "G-SNEKH5E8E7"
 };
+
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
+
 var database = firebase.database();
 firebase.analytics();
-var newUser;
 
+function signinPage() {
+    $("#signin").on("click", function (event) {
+        event.preventDefault();
+        var userEmail = $("#inputEmail").val().trim();
+        var userPassword = $("#inputPassword").val().trim();
 
-$("#signin").on("click", function (event) {
-    event.preventDefault();
-    var userEmail = $("#inputEmail").val().trim();
-    console.log(userEmail);
-    var userPassword = $("#inputPassword").val().trim();
-    console.log(userPassword);
+        var ref = database.ref('Users/');
+        ref.on('value', gotData_long, errData_long); //binds new events
 
+        function gotData_long(data) {
+            var creds = data.val();
+            var keys = Object.keys(creds);
+            var temp = false;
+            for (var i = 0; i < keys.length; i++) {
+                var k = keys[i];
+                var e = creds[k].emailfb;
+                var p = creds[k].passfb;
+                if (e === userEmail && p === userPassword) {
+                    temp = true;
+                    break;
+                }
+            }
 
-    var ref = database.ref('Users/');
-    ref.on('value', gotData_long, errData_long); //binds new events
-    function gotData_long(data) {
-        var dat = data.val();
-        console.log(dat);
-        var keys = Object.keys(dat);
-        console.log(keys);
-        for(var i = 0; i < keys.length; i++){
-            var k = keys[i];
-            var emails = dat[k].emailfb;
-            var passwords = dat[k].passfb;
-            console.log(emails);
-            console.log(passwords);
+            if (temp) {
+                location.href = "index.html";
+            }
+            else {
+                console.log("Error");
+            }
+
         }
-        if (userEmail != emails && userPasswords != passwords){
-            alert("please try again");
-        }
-        //else{
-            //location.href = "index.html";
-        //}
-    }
+
+    });
 
     function errData_long(err) {
         console.log("Error");
         console.log(err);
     }
 
+}
 
-    //insert user/pass check here
-    var x = database.ref('Users');
-    var newUser = x.push();
-
-    newUser.set({
-        emailfb: userEmail,
-        passfb: userPassword,
-    });
-});
+signinPage();
