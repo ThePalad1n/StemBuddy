@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Stem Buddy</title>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.13.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.13.1/firebase-database.js"></script>
+
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+
+    <link rel="stylesheet" type="text/css" href="assets/css/stylesheet1.css">
+</head>
+
+<body>
+
+    <header id="maintopheader">
+        <div class="container">
+            <a href="numberSystemCon.html" id="name">StemBuddy</a>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <br>
+        <div class="row">
+            <div class="col-md-12">
+                <div style="background:grey !important" class="jumbotron text-center">
+                    <h1><span class="jumboDisp"></span> Number System Conversions </h1>
+                    <p>Type in any field and you will be displayed with the conversion for each type.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div id="opcon" class="col-md-12con">
+                    <div id="options" class="card mb-4">
+                        <p> Binary </p> <input id="bin" oninput="Convert('bin', 2)" placeholder="bin"
+                            spellcheck="false">
+                        <p> Octal </p> <input id="oct" oninput="Convert('oct', 8)" placeholder="oct" spellcheck="false">
+
+                        <p> Decimal </p> <input id="dec" oninput="Convert('dec', 10)" placeholder="dec"
+                            spellcheck="false">
+
+                        <p> Hexidecimal </p> <input id="hex" oninput="Convert('hex', 16)" placeholder="hex"
+                            spellcheck="false"> <br>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+<script src="assets/javascript/app.js"></script>
+<script>
+
+
+    function Convert(s, n) {
+        if (parseInt(id(s).value, n)) {
+            if ("bin" != s) { id("bin").value = parseInt(id(s).value, n).toString(2) }
+            if ("oct" != s) { id("oct").value = parseInt(id(s).value, n).toString(8) }
+            if ("dec" != s) { id("dec").value = parseInt(id(s).value, n).toString(10) }
+            if ("hex" != s) { id("hex").value = parseInt(id(s).value, n).toString(16) }
+        } else {
+            if ("bin" != s) { id("bin").value = "" }
+            if ("oct" != s) { id("oct").value = "" }
+            if ("dec" != s) { id("dec").value = "" }
+            if ("hex" != s) { id("hex").value = "" }
+        }
+    }
+</script>
+</body>
+
+</html>
