@@ -19,13 +19,6 @@ body {
     clear: both;
 }  
 
-.card{
-    width: 100%;
-    max-width: 960px;
-    margin: auto; 
-    clear: both;
-    background-color: cornflowerblue;
-} 
 
 h1, h2, h3, p {
     margin-bottom: 20px;
